@@ -1,4 +1,4 @@
-﻿namespace WeatherForecast;
+﻿namespace WeatherForecast.Views;
 
 public partial class MainWindow {
     public MainWindow() {
