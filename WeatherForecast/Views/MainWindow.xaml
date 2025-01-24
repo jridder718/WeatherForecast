@@ -4,32 +4,90 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Weather Forecast" Height="450" Width="800" d:DataContext="{d:SampleData WeatherViewModel (in WeatherForecast.ViewModels)}">
+        Title="Weather Forecast" Height="640" Width="800"
+        Background="#FFEEF6F7"
+        d:DataContext="{d:SampleData WeatherViewModel (in WeatherForecast.ViewModels)}">
 
-    <Grid Margin="10">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="10">
-            <TextBlock Text="Current Temperature:" FontWeight="Bold" FontSize="16" />
-            <TextBlock Text="{Binding CurrentWeather.Temperature, StringFormat='\{0\}°C'}" FontSize="32" />
-            <TextBlock Text="{Binding CurrentWeather.Weather}" FontSize="16" Foreground="Gray" />
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,20">
+            <TextBlock Text="Location:"
+                       FontWeight="Bold"
+                       FontSize="18"
+                       Foreground="#FF333333"
+                       Margin="0,0,10,0" />
+            <TextBlock Text="Bremen"
+                       FontWeight="Bold"
+                       FontSize="18"
+                       Foreground="#FF1E88E5" />
         </StackPanel>
 
-        <TextBlock Text="Forecast" FontWeight="Bold" FontSize="16" Margin="10,20,10,10" Grid.Row="1" />
+        <Border Grid.Row="1" CornerRadius="10" Background="#FF2196F3" Padding="20" Margin="0,0,0,20">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Current Temperature"
+                           FontWeight="Bold"
+                           FontSize="20"
+                           Foreground="White" />
+                <TextBlock Text="{Binding CurrentWeather.Temperature, StringFormat='\{0\}°C'}"
+                           FontSize="40"
+                           Foreground="White"
+                           Margin="0,5,0,0" />
+                <TextBlock Text="{Binding CurrentWeather.Weather}"
+                           FontSize="18"
+                           Foreground="#FFACE7FF"
+                           Margin="0,10,0,0" />
+            </StackPanel>
+        </Border>
 
-        <ListBox ItemsSource="{Binding Forecast}" Grid.Row="2" Margin="0,10,0,0">
+        <TextBlock Text="Forecast"
+                   FontWeight="Bold"
+                   FontSize="22"
+                   Foreground="#FF333333"
+                   Margin="0,10,0,10"
+                   Grid.Row="2" />
+
+        <ListBox ItemsSource="{Binding Forecast}"
+                 Grid.Row="2"
+                 Margin="0,10,0,0"
+                 Background="White"
+                 BorderThickness="0"
+                 Padding="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Hours}" Margin="0,0,10,0" d:DataContext="{d:SampleData WeatherData (in WeatherForecast.Models)}" />
-                            <TextBlock Text="hr:" FontWeight="Bold" Margin="0,0,10,0" />
-                            <TextBlock Text="{Binding Temperature, StringFormat='\{0\}°C'}" FontWeight="Bold" Margin="0,0,20,0" d:DataContext="{d:SampleData WeatherData (in WeatherForecast.Models)}" />
-                            <TextBlock Text="{Binding Weather}" d:DataContext="{d:SampleData WeatherData (in WeatherForecast.Models)}" />
+                    <Border Background="#FFE3F2FD"
+                            CornerRadius="10"
+                            Padding="15"
+                            Margin="5,5,5,15"
+                            BorderThickness="1"
+                            BorderBrush="#FFBBDEFB" d:DataContext="{d:SampleData WeatherData (in WeatherForecast.Models)}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Hours}"
+                                       FontWeight="Bold"
+                                       FontSize="16"
+                                       Foreground="#FF333333"
+                                       Margin="0,0,10,0" />
+
+                            <TextBlock Text="hr:"
+                                       FontWeight="SemiBold"
+                                       FontSize="14"
+                                       Foreground="#FF666666"
+                                       Margin="0,0,10,0" />
+
+                            <TextBlock Text="{Binding Temperature, StringFormat='\{0\}°C'}"
+                                       FontWeight="Bold"
+                                       FontSize="16"
+                                       Foreground="#FF1E88E5"
+                                       Margin="0,0,20,0" />
+
+                            <TextBlock Text="{Binding Weather}"
+                                       FontWeight="Regular"
+                                       FontSize="14"
+                                       Foreground="#FF555555" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>

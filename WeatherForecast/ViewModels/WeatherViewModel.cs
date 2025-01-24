@@ -35,7 +35,7 @@ public class WeatherViewModel : INotifyPropertyChanged {
         }
     }
 
-    private void LoadWeatherData(double latitude = 51.5074, double longitude = -0.1276) {
+    private void LoadWeatherData(double longitude = 8.8017, double latitude = 53.0793) {
         try {
             var weatherData = _apiService.GetWeatherData(longitude, latitude);
             var weatherViewModelData = WeatherViewModelDataFactory.Create(weatherData);
