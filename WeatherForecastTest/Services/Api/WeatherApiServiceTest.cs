@@ -7,7 +7,7 @@ namespace WeatherForecastTest.Services.Api;
 public class WeatherApiServiceTest {
     [Test]
     public void GetWeatherData_ReturnsValidWeatherData() {
-        var weatherService = new WeatherApiService(MockFactory.CreateHttpClientMock(GetApiMockData()));
+        var weatherService = new WeatherApiService(MockFactory.CreateHttpClientMock(MockDataProvider.GetApiMockData()));
         var result = weatherService.GetWeatherData(0, 0);
         var firstElement = result.GetProperty("dataseries")[0];
 
@@ -16,11 +16,5 @@ public class WeatherApiServiceTest {
             Assert.That(firstElement.GetProperty("temp2m").GetInt32(), Is.EqualTo(20));
             Assert.That(firstElement.GetProperty("weather").GetString(), Is.EqualTo("clear"));
         });
-    }
-
-    private static string GetApiMockData() {
-        var apiDataPath = Path.Combine(TestContext.CurrentContext.WorkDirectory, "../../../TestUtils/ApiMockData.json");
-        
-        return File.ReadAllText(apiDataPath);
     }
 }
