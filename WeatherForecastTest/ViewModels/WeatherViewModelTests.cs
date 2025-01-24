@@ -1,6 +1,8 @@
+using System.Collections.ObjectModel;
 using Moq;
 using WeatherForecast.Models;
 using WeatherForecast.Services.Api;
+using WeatherForecast.Services.Factory;
 using WeatherForecast.ViewModels;
 
 namespace WeatherForecastTest.ViewModels;
@@ -17,7 +19,7 @@ public class WeatherViewModelTests {
 
     [Test]
     public void SetCurrentWeather_ShouldUpdateWeatherData() {
-        var weatherData = new WeatherData { Temperature = 20, Weather = "clear", Hours = 1 };
+        var weatherData = WeatherDataFactory.CreateWithDefaults();
         _viewModel.CurrentWeather = weatherData;
 
         Assert.That(_viewModel.CurrentWeather, Is.EqualTo(weatherData));
@@ -30,17 +32,17 @@ public class WeatherViewModelTests {
 
     [Test]
     public void Forecast_ModifyCollection_ShouldReflectChanges() {
-        var weatherData = new WeatherData { Temperature = 20, Weather = "clear", Hours = 1 };
+        var weatherData = WeatherDataFactory.CreateWithDefaults();
         _viewModel.Forecast.Add(weatherData);
 
-        Assert.That(_viewModel.Forecast, Is.EqualTo(new List<WeatherData> { weatherData }));
+        Assert.That(_viewModel.Forecast, Is.EqualTo(new ObservableCollection<WeatherData> { weatherData }));
     }
 
     [Test]
     public void OnPropertyChanged_ShouldRaisePropertyChangedEvent() {
         string? propertyName = null;
         _viewModel.PropertyChanged += (_, args) => propertyName = args.PropertyName;
-        _viewModel.CurrentWeather = new WeatherData { Temperature = 20, Weather = "clear", Hours = 1 };
+        _viewModel.CurrentWeather = WeatherDataFactory.CreateWithDefaults();
 
         Assert.That(propertyName, Is.EqualTo(nameof(_viewModel.CurrentWeather)));
     }

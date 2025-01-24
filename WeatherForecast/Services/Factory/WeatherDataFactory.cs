@@ -11,4 +11,12 @@ public static class WeatherDataFactory {
             Weather = jsonElement.GetProperty("weather").GetString() ?? string.Empty
         };
     }
+
+    public static WeatherData CreateWithDefaults() {
+        return new WeatherData {
+            Hours = int.MaxValue,
+            Temperature = int.MaxValue,
+            Weather = string.Empty
+        };
+    }
 }
