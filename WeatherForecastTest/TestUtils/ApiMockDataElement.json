@@ -1,0 +1,14 @@
+{
+  "timepoint": 1,
+  "cloudcover": 10,
+  "lifted_index": 0,
+  "prec_type": "none",
+  "prec_amount": 0.0,
+  "temp2m": 20,
+  "rh2m": "50%",
+  "wind10m": {
+    "direction": "N",
+    "speed": 1
+  },
+  "weather": "clear"
+}
