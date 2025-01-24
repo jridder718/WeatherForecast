@@ -1,4 +1,6 @@
+using Moq;
 using WeatherForecast.Models;
+using WeatherForecast.Services.Api;
 using WeatherForecast.ViewModels;
 
 namespace WeatherForecastTest.ViewModels;
@@ -9,7 +11,8 @@ public class WeatherViewModelTests {
 
     [SetUp]
     public void Setup() {
-        _viewModel = new WeatherViewModel();
+        var mockWeatherApiService = new Mock<IWeatherApiService>();
+        _viewModel = new WeatherViewModel(mockWeatherApiService.Object);
     }
 
     [Test]

@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace WeatherForecast.Services.Api;
 
-public class WeatherApiService(HttpClient? httpClient = null) {
+public class WeatherApiService(HttpClient? httpClient = null) : IWeatherApiService {
     private readonly HttpClient _httpClient = httpClient ?? new HttpClient();
     private const string ApiUrl = "https://www.7timer.info/bin/api.pl?lon={0}&lat={1}&product=civil&output=json";
 
